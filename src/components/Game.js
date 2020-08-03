@@ -68,6 +68,28 @@ class Game extends Component {
     onLand(() => this.nextTurn());
   }
 
+  swapWithRandomPlayer() {
+    const player = this._getCurrentPlayer();
+    const otherPlayer = this._getRandomOtherPlayer();
+    this._setMessage(
+      `Swapping ${player.getName()} with ${otherPlayer.getName()}`
+    );
+    const otherPos = otherPlayer.getPosition();
+
+    sleep(VIEW_TIME)
+      .then(() => {
+        otherPlayer.setPosition(this.pos);
+        this._redrawTiles();
+      })
+      .then(() => sleep(VIEW_TIME))
+      .then(() => {
+        player.setPosition(otherPos);
+        this._redrawTiles();
+      })
+      .then(() => sleep(VIEW_TIME))
+      .then(() => this.nextTurn())
+  }
+
   pickupCard() {
     const playerName = this._getCurrentPlayer().getName();
     this._setMessage(`${playerName} has drawn a card`);
@@ -173,6 +195,15 @@ class Game extends Component {
 
   _getCurrentPlayer() {
     return this.players.get(this.turn);
+  }
+
+  _getRandomOtherPlayer() {
+    const i = generateRandomNumberBetween(0, this.players.length - 1)
+    if (i == this.turn) {
+      return this._getRandomOtherPlayer();
+    } else {
+      return this.players.get(i)
+    }
   }
 
   _redrawTiles() {
