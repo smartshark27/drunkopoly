@@ -27,17 +27,31 @@ class Game extends Component {
     this._setMessage(`${player.getName()} rolled ${spaces}`);
     sleep(VIEW_TIME).then(() => {
       this.dice.remove();
-      this.move(this._getCurrentPlayer(), spaces);
+      this.moveForward(spaces);
     });
   }
 
-  move(player, spaces) {
+  moveForward(spaces) {
+    const player = this._getCurrentPlayer();
     console.log(`Moving ${player.getName()} forward ${spaces} spaces`);
     this.tiles.shiftRight(spaces, () => this.finishMove());
   }
 
+  moveBackward(spaces) {
+    const player = this._getCurrentPlayer();
+    console.log(`Moving ${player.getName()} backward ${spaces} spaces`);
+    this.tiles.shiftLeft(spaces, () => this.finishMove());
+  }
+
+  moveBackTo(pos) {
+    const player = this._getCurrentPlayer();
+    console.log(`Moving ${player.getName()} back to position ${pos}`);
+    const spaces = this.pos - pos;
+    this.tiles.shiftLeft(spaces, () => this.finishMove());
+  }
+
   finishMove() {
-    this.pos = this.tiles.getPos();
+    this.pos = this.tiles.getPosition();
     const player = this._getCurrentPlayer();
     player.setPosition(this.pos);
     console.log(`${player.getName()} has landed at position ${this.pos}`);

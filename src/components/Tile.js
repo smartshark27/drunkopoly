@@ -20,7 +20,7 @@ class Tile extends Component {
     })
   }
 
-  getPos() {
+  getPosition() {
     return this.pos;
   }
 
