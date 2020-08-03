@@ -10,7 +10,7 @@ const TILES = [
   makeTile("START", "FINISH"),
   makeTile("Take a sip"),
   makeTile("Take a shot!"),
-  makeTile("Card"),
+  makeTile("Card", "", () => game.pickupCard()),
   makeTile("Nobody drinks", "Stay dry"),
   makeTile("Take a sip and", "play again", () => game.readyRoll()),
   makeTile("Jump back 3 spaces", "", () => game.moveBackward(3)),

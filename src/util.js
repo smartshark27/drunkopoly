@@ -23,8 +23,23 @@ function circularIndex(array, i) {
   return (i + array.length) % array.length;
 }
 
-function isNegative(n) {
-  return n < 0;
+function splitTextIntoLines(str, maxCharPerLine) {
+  const n = str.length;
+  const lines = [];
+  var charsDone = 0;
+  var tmp, lastSpaceIndex;
+  while (charsDone < n) {
+    tmp = str.substring(charsDone, maxCharPerLine + charsDone);
+    lastSpaceIndex = tmp.lastIndexOf(" ");
+    if (tmp.length < 25 || lastSpaceIndex < 0) {
+      lines.push(tmp);
+      charsDone += tmp.length;
+    } else {
+      lines.push(tmp.substring(0, lastSpaceIndex));
+      charsDone += lastSpaceIndex + 1;
+    }
+  }
+  return lines;
 }
 
 function clearArray(arr) {

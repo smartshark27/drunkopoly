@@ -46,6 +46,13 @@ const DIE_LEFT_ROLL_TIME = 1000;
 const DIE_RIGHT_ROLL_TIME = 2000;
 const DICE_SEPARATION = 5;
 
+const CARD_WIDTH = 90;
+const CARD_HEIGHT = 70;
+const CARD_CORNER_RADIUS = 3;
+const CARD_PADDING = 8;
+const CARD_TEXT_SIZE = 5;
+const CARD_TEXT_MAX_CHAR_PER_LINE = 25;
+
 //-----------------------------------------------------------------------------
 // Derived
 //-----------------------------------------------------------------------------
@@ -60,3 +67,6 @@ const VIEWBOX_BOTTOM = VIEWBOX_HEIGHT / 2;
 const TILE_LEFT_MOST_X = -3.5 * TILE_WIDTH - 3 * TILE_SEPARATION;
 const TILE_RIGHT_MOST_X = 2.5 * TILE_WIDTH + 3 * TILE_SEPARATION;
 const TILE_Y = -40;
+
+const CARD_X = -CARD_WIDTH / 2;
+const CARD_Y = -CARD_HEIGHT / 2;

@@ -4,6 +4,8 @@ class Game extends Component {
     this.players = new Players(playerNames);
     this.pos = 0;
     this.turn = 0;
+    this.cards = new Cards();
+
     this._draw();
 
     sleep(VIEW_TIME).then(() => this._drawScreenButton("game.readyRoll()"));
@@ -64,6 +66,26 @@ class Game extends Component {
     console.log("Doing tile action");
     const onLand = this.tiles.getCurrent().getOnLand();
     onLand(() => this.nextTurn());
+  }
+
+  pickupCard() {
+    const playerName = this._getCurrentPlayer().getName();
+    this._setMessage(`${playerName} has drawn a card`);
+    this._drawCard();
+    this._drawScreenButton("game.hideCard()");
+  }
+
+  hideCard() {
+    this._removeScreenButton();
+    this._removeCard();
+    this._drawScreenButton("game.doCardAction()");
+  }
+
+  doCardAction() {
+    this._removeScreenButton();
+    const onPickup = this.cards.getTop().onPickup;
+    this.cards.nextCard();
+    onPickup(() => this.nextTurn());
   }
 
   nextTurn() {
@@ -133,6 +155,15 @@ class Game extends Component {
   _drawDice() {
     this.dice = new Dice();
     this.addElement(this.dice);
+  }
+
+  _drawCard() {
+    this.card = new Card(this.cards.getTop().desc);
+    this.addElement(this.card);
+  }
+
+  _removeCard() {
+    this.card.remove();
   }
 
   _setMessage(text) {

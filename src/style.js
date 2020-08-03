@@ -6,10 +6,8 @@ const COLORS = {
   NAVY: "#1539a3",
   ORANGE: "Orange",
   RED: "#bf2a2a",
+  GREEN: "#1dad25",
   BROWN: "Brown",
-
-  GREEN: "Green",
-  LIGHT_GREEN: "#1dad25",
   YELLOW: "Yellow",
   BLUE: "Blue",
 };

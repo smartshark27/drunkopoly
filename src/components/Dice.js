@@ -11,6 +11,7 @@ class Dice extends Component {
   }
 
   getRolledNum() {
+    return 3;
     return Number(this.leftDie.getTextContent()) + Number(this.rightDie.getTextContent());
   }
 
