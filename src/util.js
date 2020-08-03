@@ -23,6 +23,10 @@ function circularIndex(array, i) {
   return (i + array.length) % array.length;
 }
 
+function circularGet(array, i) {
+  return array[circularIndex(array, i)];
+}
+
 function splitTextIntoLines(str, maxCharPerLine) {
   const n = str.length;
   const lines = [];

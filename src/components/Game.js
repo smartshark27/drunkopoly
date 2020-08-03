@@ -3,7 +3,6 @@ class Game extends Component {
     super();
     this.players = new Players(playerNames);
     this.pos = 0;
-    this.turn = 0;
     this.cards = new Cards();
 
     this._draw();
@@ -13,7 +12,7 @@ class Game extends Component {
 
   readyRoll() {
     this._removeScreenButton();
-    this._setMessage(`${this._getCurrentPlayer().getName()}, tap to roll`);
+    this._setMessage(`${this.players.getCurrent().getName()}, tap to roll`);
     this._drawDice();
     this._drawScreenButton("game.roll()");
   }
@@ -25,7 +24,7 @@ class Game extends Component {
 
   finishRoll() {
     const spaces = this.dice.getRolledNum();
-    const player = this._getCurrentPlayer();
+    const player = this.players.getCurrent();
     this._setMessage(`${player.getName()} rolled ${spaces}`);
     sleep(VIEW_TIME).then(() => {
       this.dice.remove();
@@ -34,19 +33,19 @@ class Game extends Component {
   }
 
   moveForward(spaces) {
-    const player = this._getCurrentPlayer();
+    const player = this.players.getCurrent();
     console.log(`Moving ${player.getName()} forward ${spaces} spaces`);
     this.tiles.shiftRight(spaces, () => this.finishMove());
   }
 
   moveBackward(spaces) {
-    const player = this._getCurrentPlayer();
+    const player = this.players.getCurrent();
     console.log(`Moving ${player.getName()} backward ${spaces} spaces`);
     this.tiles.shiftLeft(spaces, () => this.finishMove());
   }
 
   moveBackTo(pos) {
-    const player = this._getCurrentPlayer();
+    const player = this.players.getCurrent();
     console.log(`Moving ${player.getName()} back to position ${pos}`);
     const spaces = this.pos - pos;
     this.tiles.shiftLeft(spaces, () => this.finishMove());
@@ -54,7 +53,7 @@ class Game extends Component {
 
   finishMove() {
     this.pos = this.tiles.getPosition();
-    const player = this._getCurrentPlayer();
+    const player = this.players.getCurrent();
     player.setPosition(this.pos);
     console.log(`${player.getName()} has landed at position ${this.pos}`);
     this._redrawTiles();
@@ -69,7 +68,7 @@ class Game extends Component {
   }
 
   swapWithRandomPlayer() {
-    const player = this._getCurrentPlayer();
+    const player = this.players.getCurrent();
     const otherPlayer = this._getRandomOtherPlayer();
     this._setMessage(
       `Swapping ${player.getName()} with ${otherPlayer.getName()}`
@@ -87,11 +86,19 @@ class Game extends Component {
         this._redrawTiles();
       })
       .then(() => sleep(VIEW_TIME))
-      .then(() => this.nextTurn())
+      .then(() => this.nextTurn());
+  }
+
+  drinkWithNeighbours() {
+    const playerName = this.players.getCurrent().getName();
+    const leftPlayerName = this.players.getPlayerLeftOfCurrent().getName();
+    const rightPlayerName = this.players.getPlayerRightOfCurrent().getName();
+    this._setMessage(`${playerName}, ${leftPlayerName} & ${rightPlayerName} drink`);
+    this._drawScreenButton("game.nextTurn()");
   }
 
   pickupCard() {
-    const playerName = this._getCurrentPlayer().getName();
+    const playerName = this.players.getCurrent().getName();
     this._setMessage(`${playerName} has drawn a card`);
     this._drawCard();
     this._drawScreenButton("game.hideCard()");
@@ -111,8 +118,9 @@ class Game extends Component {
   }
 
   nextTurn() {
-    this.turn = (this.turn + 1) % this.players.length;
-    this.pos = this._getCurrentPlayer().getPosition();
+    this._removeScreenButton();
+    this.players.nextTurn();
+    this.pos = this.players.getCurrent().getPosition();
     this._redrawTiles();
     this.readyRoll();
   }
@@ -191,19 +199,6 @@ class Game extends Component {
   _setMessage(text) {
     console.log(text);
     this.message.setTextContent(text);
-  }
-
-  _getCurrentPlayer() {
-    return this.players.get(this.turn);
-  }
-
-  _getRandomOtherPlayer() {
-    const i = generateRandomNumberBetween(0, this.players.length - 1)
-    if (i == this.turn) {
-      return this._getRandomOtherPlayer();
-    } else {
-      return this.players.get(i)
-    }
   }
 
   _redrawTiles() {
