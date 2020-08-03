@@ -27,12 +27,48 @@ class Players {
     return this.get(circularIndex(this.players, this.current - 1));
   }
 
+  getPlayersClosestToStart() {
+    const currentPlayer = this.getCurrent();
+    return this.players
+      .reduce(
+        (closest, current) => {
+          const closestPos = closest[0].getPosition();
+          const currentPos = current.getPosition();
+          if (currentPos < closestPos) {
+            return [current];
+          } else if (currentPos == closestPos && current != currentPlayer) {
+            closest.push(current);
+          }
+          return closest;
+        },
+        [currentPlayer]
+      );
+  }
+
+  getPlayersClosestToFinish() {
+    const currentPlayer = this.getCurrent();
+    return this.players
+      .reduce(
+        (closest, current) => {
+          const closestPos = closest[0].getPosition();
+          const currentPos = current.getPosition();
+          if (currentPos > closestPos) {
+            return [current];
+          } else if (currentPos == closestPos && current != currentPlayer) {
+            closest.push(current);
+          }
+          return closest;
+        },
+        [currentPlayer]
+      );
+  }
+
   getRandomOtherPlayer() {
     const i = generateRandomNumberBetween(0, this.length - 1);
     if (i == this.current) {
       return this._getRandomOtherPlayer();
     } else {
-      return this.players.get(i);
+      return this.get(i);
     }
   }
 

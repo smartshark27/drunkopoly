@@ -30,7 +30,7 @@ const MESSAGE_INIT_TEXT = "Welcome and good luck";
 const TILE_WIDTH = 80;
 const TILE_HEIGHT = 130;
 const TILE_SEPARATION = 10;
-const TILE_SPEED = 5;
+const TILE_SPEED = 2;
 const TILE_PLAYER_NAME_SEPARATION = 8;
 const TILE_PLAYER_NAME_TEXT_SIZE = 5;
 

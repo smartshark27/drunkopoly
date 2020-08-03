@@ -23,12 +23,12 @@ class Game extends Component {
   }
 
   finishRoll() {
-    const spaces = this.dice.getRolledNum();
+    this.numberRolled = this.dice.getRolledNum();
     const player = this.players.getCurrent();
-    this._setMessage(`${player.getName()} rolled ${spaces}`);
+    this._setMessage(`${player.getName()} rolled ${this.numberRolled}`);
     sleep(VIEW_TIME).then(() => {
       this.dice.remove();
-      this.moveForward(spaces);
+      this.moveForward(this.numberRolled);
     });
   }
 
@@ -38,9 +38,9 @@ class Game extends Component {
     this.tiles.shiftRight(spaces, () => this.finishMove());
   }
 
-  moveBackward(spaces) {
+  moveBack(spaces) {
     const player = this.players.getCurrent();
-    console.log(`Moving ${player.getName()} backward ${spaces} spaces`);
+    console.log(`Moving ${player.getName()} back ${spaces} spaces`);
     this.tiles.shiftLeft(spaces, () => this.finishMove());
   }
 
@@ -49,6 +49,10 @@ class Game extends Component {
     console.log(`Moving ${player.getName()} back to position ${pos}`);
     const spaces = this.pos - pos;
     this.tiles.shiftLeft(spaces, () => this.finishMove());
+  }
+
+  moveBackByNumberRolled() {
+    this.moveBack(this.numberRolled);
   }
 
   finishMove() {
@@ -68,32 +72,48 @@ class Game extends Component {
   }
 
   swapWithRandomPlayer() {
-    const player = this.players.getCurrent();
-    const otherPlayer = this._getRandomOtherPlayer();
-    this._setMessage(
-      `Swapping ${player.getName()} with ${otherPlayer.getName()}`
-    );
-    const otherPos = otherPlayer.getPosition();
+    const otherPlayer = this.players.getRandomOtherPlayer();
+    this._swapWithOtherPlayers([otherPlayer]);
+  }
 
-    sleep(VIEW_TIME)
-      .then(() => {
-        otherPlayer.setPosition(this.pos);
-        this._redrawTiles();
-      })
-      .then(() => sleep(VIEW_TIME))
-      .then(() => {
-        player.setPosition(otherPos);
-        this._redrawTiles();
-      })
-      .then(() => sleep(VIEW_TIME))
-      .then(() => this.nextTurn());
+  swapWithPlayerToLeft() {
+    const leftPlayer = this.players.getPlayerLeftOfCurrent();
+    this._swapWithOtherPlayers([leftPlayer]);
+  }
+
+  swapWithPlayersClosestToStart() {
+    const startPlayer = this.players.getPlayersClosestToStart();
+    this._swapWithOtherPlayers(startPlayer);
   }
 
   drinkWithNeighbours() {
     const playerName = this.players.getCurrent().getName();
     const leftPlayerName = this.players.getPlayerLeftOfCurrent().getName();
     const rightPlayerName = this.players.getPlayerRightOfCurrent().getName();
-    this._setMessage(`${playerName}, ${leftPlayerName} & ${rightPlayerName} drink`);
+    this._setMessage(
+      `${playerName}, ${leftPlayerName} & ${rightPlayerName} drink`
+    );
+    this._drawScreenButton("game.nextTurn()");
+  }
+
+  neighboursDrink() {
+    const leftPlayerName = this.players.getPlayerLeftOfCurrent().getName();
+    const rightPlayerName = this.players.getPlayerRightOfCurrent().getName();
+    this._setMessage(`${leftPlayerName} & ${rightPlayerName} drink`);
+    this._drawScreenButton("game.nextTurn()");
+  }
+
+  closestToStartDrink() {
+    const closest = this.players.getPlayersClosestToStart().map((player) => player.name);
+    this._setMessage(`${closest.join(", ")}, drink`);
+    this._drawScreenButton("game.nextTurn()");
+  }
+
+  closestToStartAndFinishDrink() {
+    const closestToStart = this.players.getPlayersClosestToStart();
+    const closestToFinish = this.players.getPlayersClosestToFinish();
+    const players = closestToStart.concat(closestToFinish).map((player) => player.name);
+    this._setMessage(`${players.join(", ")}, drink`);
     this._drawScreenButton("game.nextTurn()");
   }
 
@@ -173,6 +193,11 @@ class Game extends Component {
     this.addElement(this.tiles);
   }
 
+  _redrawTiles() {
+    this.tiles.remove();
+    this._drawTiles();
+  }
+
   _drawScreenButton(onClick) {
     this.screenButton = new ScreenButton(onClick);
     this.addElement(this.screenButton);
@@ -201,8 +226,26 @@ class Game extends Component {
     this.message.setTextContent(text);
   }
 
-  _redrawTiles() {
-    this.tiles.remove();
-    this._drawTiles();
+  _swapWithOtherPlayers(otherPlayers) {
+    const current = this.players.getCurrent();
+    const otherPlayerNames = otherPlayers.map((player) => player.getName());
+    this._setMessage(
+      `Swapping ${current.getName()} with ${otherPlayerNames.join(", ")}`
+    );
+    const otherPos = otherPlayers[0].getPosition();
+    sleep(VIEW_TIME)
+      .then(() => {
+        otherPlayers.forEach((player) => {
+          player.setPosition(this.pos);
+        });
+        this._redrawTiles();
+      })
+      .then(() => sleep(VIEW_TIME))
+      .then(() => {
+        current.setPosition(otherPos);
+        this._redrawTiles();
+      })
+      .then(() => sleep(VIEW_TIME))
+      .then(() => this.nextTurn());
   }
 }

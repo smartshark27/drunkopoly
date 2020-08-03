@@ -40,14 +40,14 @@ class Tiles extends Component {
         });
         moved += TILE_SPEED;
         if (moved >= TILE_WIDTH + TILE_SEPARATION) {
-          console.log("Moved a space backward");
+          console.log("Moved back a space");
           this._removeLeftMostTile();
           clearInterval(interval);
           this.shiftLeft(spacesRemaining - 1, next);
         }
       }, FRAME_DELAY);
     } else {
-      console.log("Finished moving backward");
+      console.log("Finished moving backwards");
       next();
     }
   }
