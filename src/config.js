@@ -21,7 +21,7 @@ const BACKGROUND_HEIGHT = 700;
 
 const TITLE_Y = -75;
 const TITLE_TEXT = "DRUNKOPOLY";
-const TITLE_TEXT_SIZE = 12;
+const TITLE_TEXT_SIZE = 14;
 
 const MESSAGE_Y = -55;
 const MESSAGE_TEXT_SIZE = 5;
@@ -53,7 +53,7 @@ const CARD_HEIGHT = 65;
 const CARD_CORNER_RADIUS = 3;
 const CARD_PADDING = 8;
 const CARD_TEXT_SIZE = 5;
-const CARD_TEXT_MAX_CHAR_PER_LINE = 30;
+const CARD_TEXT_MAX_CHAR_PER_LINE = 35;
 
 //-----------------------------------------------------------------------------
 // Derived

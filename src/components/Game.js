@@ -183,7 +183,7 @@ class Game extends Component {
         .setAttribute("dominant-baseline", "middle")
         .setAttribute("text-anchor", "middle")
         .setAttribute("y", TITLE_Y)
-        .setAttribute("style", FONTS.LUCIDA_CONSOLE)
+        .setAttribute("style", FONTS.PATRICK_HAND)
         .setAttribute("font-size", TITLE_TEXT_SIZE)
         .setAttribute("fill", COLORS.ORANGE)
         .setTextContent(TITLE_TEXT)
@@ -195,7 +195,7 @@ class Game extends Component {
       .setAttribute("dominant-baseline", "middle")
       .setAttribute("text-anchor", "middle")
       .setAttribute("y", MESSAGE_Y)
-      .setAttribute("style", FONTS.COMIC_SANS)
+      .setAttribute("style", FONTS.SNIGLET)
       .setAttribute("font-size", MESSAGE_TEXT_SIZE)
       .setAttribute("fill", COLORS.WHITE)
       .setTextContent(MESSAGE_INIT_TEXT);

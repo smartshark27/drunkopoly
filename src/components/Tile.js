@@ -85,7 +85,7 @@ class Tile extends Component {
         .setAttribute("text-anchor", "middle")
         .setAttribute("x", this.x + TILE_WIDTH / 2)
         .setAttribute("y", y)
-        .setAttribute("style", FONTS.COMIC_SANS)
+        .setAttribute("style", FONTS.SNIGLET)
         .setAttribute("font-size", TILE_PLAYER_NAME_TEXT_SIZE)
         .setAttribute("fill", this.textColor)
         .setTextContent(name)
