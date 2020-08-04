@@ -5,13 +5,15 @@ var CARDS;
 function start() {
   setViewbox(-(VIEWBOX_WIDTH / 2), -(VIEWBOX_HEIGHT / 2));
 
+  const players = getPlayers();
+
   console.log("Welcome to Drunkopoly");
-  console.log(`Players: ${PLAYERS}`);
+  console.log(`Players: ${players}`);
 
   TILES = getTilesUppercase();
   CARDS = getCards();
 
-  game = new Game(shuffle(PLAYERS));
+  game = new Game(shuffle(players));
 }
 
 function setViewbox(x, y, width = VIEWBOX_WIDTH, height = VIEWBOX_HEIGHT) {
@@ -20,14 +22,10 @@ function setViewbox(x, y, width = VIEWBOX_WIDTH, height = VIEWBOX_HEIGHT) {
   canvas.setAttribute("viewBox", viewBoxStr);
 }
 
-function convertClientToViewboxPoint(x, y) {
-  const canvas = document.getElementById("canvas");
-  const clientPoint = canvas.createSVGPoint();
-  clientPoint.x = event.clientX;
-  clientPoint.y = event.clientY;
-  const transform = canvas.getScreenCTM().inverse();
-  const viewboxPoint = clientPoint.matrixTransform(transform);
-  return [viewboxPoint.x, viewboxPoint.y];
+function getPlayers() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const queryStringPlayers = urlParams.get("players");
+  return queryStringPlayers ? queryStringPlayers.split(",") : PLAYERS;
 }
 
 function restart() {
