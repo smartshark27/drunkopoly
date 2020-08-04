@@ -8,6 +8,7 @@ class Tiles extends Component {
 
   shiftRight(spacesRemaining, next = () => {}) {
     if (spacesRemaining > 0) {
+      const isLastMove = this.pos + 1 == TILES.length;
       this.pos = circularIndex(TILES, this.pos + 1);
       this._drawTileToLeft();
       var moved = 0;
@@ -20,7 +21,11 @@ class Tiles extends Component {
           console.log("Moved a space forward");
           this._removeRightMostTile();
           clearInterval(interval);
-          this.shiftRight(spacesRemaining - 1, next);
+          if (isLastMove) {
+            game.gameOver();
+          } else {
+            this.shiftRight(spacesRemaining - 1, next);
+          }
         }
       }, FRAME_DELAY);
     } else {

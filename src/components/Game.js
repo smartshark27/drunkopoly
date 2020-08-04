@@ -104,7 +104,9 @@ class Game extends Component {
   }
 
   closestToStartDrink() {
-    const closest = this.players.getPlayersClosestToStart().map((player) => player.name);
+    const closest = this.players
+      .getPlayersClosestToStart()
+      .map((player) => player.name);
     this._setMessage(`${closest.join(", ")}, drink`);
     this._drawScreenButton("game.nextTurn()");
   }
@@ -112,7 +114,9 @@ class Game extends Component {
   closestToStartAndFinishDrink() {
     const closestToStart = this.players.getPlayersClosestToStart();
     const closestToFinish = this.players.getPlayersClosestToFinish();
-    const players = closestToStart.concat(closestToFinish).map((player) => player.name);
+    const players = closestToStart
+      .concat(closestToFinish)
+      .map((player) => player.name);
     this._setMessage(`${players.join(", ")}, drink`);
     this._drawScreenButton("game.nextTurn()");
   }
@@ -143,6 +147,16 @@ class Game extends Component {
     this.pos = this.players.getCurrent().getPosition();
     this._redrawTiles();
     this.readyRoll();
+  }
+
+  gameOver() {
+    this._redrawTiles();
+    sleep(VIEW_TIME)
+      .then(() => {
+        const winner = this.players.getCurrent().getName();
+        this._setMessage(`${winner} has won! Tap to play again`);
+      })
+      .then(() => this._drawScreenButton("restart()"));
   }
 
   _draw() {

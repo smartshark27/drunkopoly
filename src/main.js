@@ -1,7 +1,7 @@
 var game;
 var TILES;
 
-function handleLoad() {
+function start() {
   setViewbox(-(VIEWBOX_WIDTH / 2), -(VIEWBOX_HEIGHT / 2));
 
   console.log("Welcome to Drunkopoly");
@@ -26,4 +26,9 @@ function convertClientToViewboxPoint(x, y) {
   const transform = canvas.getScreenCTM().inverse();
   const viewboxPoint = clientPoint.matrixTransform(transform);
   return [viewboxPoint.x, viewboxPoint.y];
+}
+
+function restart() {
+  game.remove();
+  start();
 }

@@ -7,9 +7,7 @@ const COLORS = {
   ORANGE: "#e06a26",
   RED: "#8c1007",
   GREEN: "#a9c92a",
-  BROWN: "DarkBrown",
-  YELLOW: "Yellow",
-  BLUE: "Blue",
+  BROWN: "#4d1d00",
 };
 
 const FONTS = {
