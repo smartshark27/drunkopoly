@@ -20,8 +20,8 @@ const BACKGROUND_WIDTH = 500;
 const BACKGROUND_HEIGHT = 700;
 
 const TITLE_Y = -75;
-const TITLE_TEXT = "Drunkopoly";
-const TITLE_TEXT_SIZE = 10;
+const TITLE_TEXT = "DRUNKOPOLY";
+const TITLE_TEXT_SIZE = 12;
 
 const MESSAGE_Y = -55;
 const MESSAGE_TEXT_SIZE = 5;
@@ -37,7 +37,7 @@ const TILE_PLAYER_NAME_TEXT_SIZE = 5;
 
 const DESC_1_Y = 65;
 const DESC_2_Y = 75;
-const DESC_TEXT_SIZE = 5;
+const DESC_TEXT_SIZE = 7;
 
 const DIE_NUMBERS = 6;
 const DIE_SIZE = 30;

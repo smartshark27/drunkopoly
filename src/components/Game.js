@@ -181,7 +181,7 @@ class Game extends Component {
       .setAttribute("dominant-baseline", "middle")
       .setAttribute("text-anchor", "middle")
       .setAttribute("y", MESSAGE_Y)
-      .setAttribute("style", FONTS.LUCIDA_CONSOLE)
+      .setAttribute("style", FONTS.COMIC_SANS)
       .setAttribute("font-size", MESSAGE_TEXT_SIZE)
       .setAttribute("fill", COLORS.WHITE)
       .setTextContent(MESSAGE_INIT_TEXT);

@@ -14,4 +14,5 @@ const COLORS = {
 
 const FONTS = {
   LUCIDA_CONSOLE: "font-family: 'Lucida Console', Monaco, monospace;",
-}
+  COMIC_SANS: 'font-family: "Comic Sans MS", cursive, sans-serif',
+};

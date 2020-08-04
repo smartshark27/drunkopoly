@@ -37,7 +37,7 @@ class Card extends Component {
         .setAttribute("text-anchor", "start")
         .setAttribute("x", CARD_X + CARD_PADDING)
         .setAttribute("y", y)
-        .setAttribute("style", FONTS.LUCIDA_CONSOLE)
+        .setAttribute("style", FONTS.COMIC_SANS)
         .setAttribute("font-size", CARD_TEXT_SIZE)
         .setAttribute("fill", COLORS.WHITE)
         .setTextContent(text)

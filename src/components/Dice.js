@@ -34,7 +34,7 @@ class Dice extends Component {
       .setAttribute("dominant-baseline", "middle")
       .setAttribute("text-anchor", "middle")
       .setAttribute("x", x + DIE_SIZE / 2)
-      .setAttribute("style", FONTS.LUCIDA_CONSOLE)
+      .setAttribute("style", FONTS.COMIC_SANS)
       .setAttribute("font-size", DIE_NUM_SIZE)
       .setAttribute("fill", COLORS.BLACK);
     this.addElement(dieNum);
