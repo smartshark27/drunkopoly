@@ -23,7 +23,7 @@ class Dice extends Component {
     this.addElement(
       SVG.new("rect")
         .setAttribute("x", x)
-        .setAttribute("y", -DIE_SIZE / 2)
+        .setAttribute("y", -DIE_SIZE / 2 - DIE_Y_OFFSET)
         .setAttribute("rx", DIE_CORNER_RADIUS)
         .setAttribute("ry", DIE_CORNER_RADIUS)
         .setAttribute("width", DIE_SIZE)

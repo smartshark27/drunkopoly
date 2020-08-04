@@ -35,7 +35,7 @@ function splitTextIntoLines(str, maxCharPerLine) {
   while (charsDone < n) {
     tmp = str.substring(charsDone, maxCharPerLine + charsDone);
     lastSpaceIndex = tmp.lastIndexOf(" ");
-    if (tmp.length < 25 || lastSpaceIndex < 0) {
+    if (tmp.length < maxCharPerLine || lastSpaceIndex < 0) {
       lines.push(tmp);
       charsDone += tmp.length;
     } else {

@@ -1,5 +1,6 @@
 var game;
 var TILES;
+var CARDS;
 
 function start() {
   setViewbox(-(VIEWBOX_WIDTH / 2), -(VIEWBOX_HEIGHT / 2));
@@ -7,7 +8,8 @@ function start() {
   console.log("Welcome to Drunkopoly");
   console.log(`Players: ${PLAYERS}`);
 
-  TILES = getTiles();
+  TILES = getTilesUppercase();
+  CARDS = getCards();
 
   game = new Game(shuffle(PLAYERS));
 }

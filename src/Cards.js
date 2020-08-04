@@ -9,18 +9,6 @@ class Cards extends Component {
     return this.cards[this.top];
   }
 
-  // getTopIndex() {
-  //   return this.top;
-  // }
-
-  // getTopDesc() {
-  //   return this
-  // }
-
-  // getTopOnPickup() {
-  //   return this.cards[this.top].onPickup;
-  // }
-
   nextCard() {
     this.top = circularIndex(this.cards, this.top + 1);
   }

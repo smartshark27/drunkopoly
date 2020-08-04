@@ -1,7 +1,8 @@
 class Card extends Component {
-  constructor(desc) {
+  constructor(data) {
     super();
-    this.desc = desc;
+    this.color = data.color;
+    this.desc = data.desc;
     this._draw();
   }
 
@@ -19,7 +20,7 @@ class Card extends Component {
         .setAttribute("height", CARD_HEIGHT)
         .setAttribute("rx", CARD_CORNER_RADIUS)
         .setAttribute("ry", CARD_CORNER_RADIUS)
-        .setAttribute("fill", COLORS.RED)
+        .setAttribute("fill", this.color)
     );
   }
 

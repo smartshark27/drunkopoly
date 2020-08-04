@@ -8,8 +8,7 @@ class Tile extends Component {
     const data = this._getTile(pos);
     this.color = data.color;
     this.textColor = data.textColor;
-    this.desc1 = data.desc1;
-    this.desc2 = data.desc2;
+    this.desc = data.desc;
     this.onLand = data.onLand;
 
     this._draw();
@@ -32,7 +31,7 @@ class Tile extends Component {
 
   _draw() {
     this._drawTile();
-    this._drawDescs();
+    this._drawDesc();
     this._drawPlayerNames();
   }
 
@@ -49,27 +48,29 @@ class Tile extends Component {
     );
   }
 
-  _drawDescs() {
-    this._drawDesc(DESC_1_Y, this.desc1);
-    this._drawDesc(DESC_2_Y, this.desc2);
+  _drawDesc() {
+    const lines = splitTextIntoLines(this.desc, TILE_DESC_MAX_CHAR_PER_LINE);
+    for (var i = 0; i < lines.length; i++) {
+      this._drawLine(TILE_DESC_TOP_Y + (i + 1) * TILE_DESC_PADDING, lines[i]);
+    }
   }
 
-  _drawDesc(y, text) {
+  _drawLine(y, text) {
     this.addElement(
       SVG.new("text")
         .setAttribute("dominant-baseline", "middle")
         .setAttribute("text-anchor", "middle")
         .setAttribute("x", this.x + TILE_WIDTH / 2)
         .setAttribute("y", y)
-        .setAttribute("style", FONTS.COMIC_SANS)
-        .setAttribute("font-size", DESC_TEXT_SIZE)
+        .setAttribute("style", FONTS.LUCIDA_CONSOLE)
+        .setAttribute("font-size", TILE_DESC_TEXT_SIZE)
         .setAttribute("fill", this.textColor)
         .setTextContent(text)
     );
   }
 
   _drawPlayerNames() {
-    var y = TILE_Y;
+    var y = TILE_PLAYER_NAME_TOP_Y;
     for (var i = 0; i < this.playerNames.length; i++) {
       y += TILE_PLAYER_NAME_SEPARATION;
       const name = this.playerNames[i];

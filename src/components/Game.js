@@ -227,7 +227,7 @@ class Game extends Component {
   }
 
   _drawCard() {
-    this.card = new Card(this.cards.getTop().desc);
+    this.card = new Card(this.cards.getTop());
     this.addElement(this.card);
   }
 
