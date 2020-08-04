@@ -19,7 +19,7 @@ class Card extends Component {
         .setAttribute("height", CARD_HEIGHT)
         .setAttribute("rx", CARD_CORNER_RADIUS)
         .setAttribute("ry", CARD_CORNER_RADIUS)
-        .setAttribute("fill", COLORS.GREEN)
+        .setAttribute("fill", COLORS.RED)
     );
   }
 
@@ -39,7 +39,7 @@ class Card extends Component {
         .setAttribute("y", y)
         .setAttribute("style", FONTS.LUCIDA_CONSOLE)
         .setAttribute("font-size", CARD_TEXT_SIZE)
-        .setAttribute("fill", COLORS.BLACK)
+        .setAttribute("fill", COLORS.WHITE)
         .setTextContent(text)
     );
   }

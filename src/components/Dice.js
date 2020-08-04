@@ -24,6 +24,8 @@ class Dice extends Component {
       SVG.new("rect")
         .setAttribute("x", x)
         .setAttribute("y", -DIE_SIZE / 2)
+        .setAttribute("rx", DIE_CORNER_RADIUS)
+        .setAttribute("ry", DIE_CORNER_RADIUS)
         .setAttribute("width", DIE_SIZE)
         .setAttribute("height", DIE_SIZE)
         .setAttribute("fill", COLORS.WHITE)

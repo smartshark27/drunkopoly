@@ -1,10 +1,13 @@
 var game;
+var TILES;
 
 function handleLoad() {
   setViewbox(-(VIEWBOX_WIDTH / 2), -(VIEWBOX_HEIGHT / 2));
 
   console.log("Welcome to Drunkopoly");
   console.log(`Players: ${PLAYERS}`);
+
+  TILES = getTiles();
 
   game = new Game(shuffle(PLAYERS));
 }

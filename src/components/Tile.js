@@ -6,6 +6,8 @@ class Tile extends Component {
     this.playerNames = playerNames;
 
     const data = this._getTile(pos);
+    this.color = data.color;
+    this.textColor = data.textColor;
     this.desc1 = data.desc1;
     this.desc2 = data.desc2;
     this.onLand = data.onLand;
@@ -41,7 +43,9 @@ class Tile extends Component {
         .setAttribute("y", TILE_Y)
         .setAttribute("width", TILE_WIDTH)
         .setAttribute("height", TILE_HEIGHT)
-        .setAttribute("fill", COLORS.RED)
+        .setAttribute("rx", TILE_CORNER_RADIUS)
+        .setAttribute("rx", TILE_CORNER_RADIUS)
+        .setAttribute("fill", this.color)
     );
   }
 
@@ -59,7 +63,7 @@ class Tile extends Component {
         .setAttribute("y", y)
         .setAttribute("style", FONTS.LUCIDA_CONSOLE)
         .setAttribute("font-size", DESC_TEXT_SIZE)
-        .setAttribute("fill", COLORS.WHITE)
+        .setAttribute("fill", this.textColor)
         .setTextContent(text)
     );
   }
@@ -82,7 +86,7 @@ class Tile extends Component {
         .setAttribute("y", y)
         .setAttribute("style", FONTS.LUCIDA_CONSOLE)
         .setAttribute("font-size", TILE_PLAYER_NAME_TEXT_SIZE)
-        .setAttribute("fill", COLORS.WHITE)
+        .setAttribute("fill", this.textColor)
         .setTextContent(name)
     );
   }
