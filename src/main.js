@@ -13,7 +13,7 @@ function start() {
   TILES = getTilesUppercase();
   CARDS = getCards();
 
-  game = new Game(shuffle(players));
+  game = new Game(players);
 }
 
 function setViewbox(x, y, width = VIEWBOX_WIDTH, height = VIEWBOX_HEIGHT) {
@@ -25,7 +25,7 @@ function setViewbox(x, y, width = VIEWBOX_WIDTH, height = VIEWBOX_HEIGHT) {
 function getPlayers() {
   const urlParams = new URLSearchParams(window.location.search);
   const queryStringPlayers = urlParams.get("players");
-  return queryStringPlayers ? queryStringPlayers.split(",") : PLAYERS;
+  return queryStringPlayers ? shuffle(queryStringPlayers.split(",")) : INSTRUCTIONS;
 }
 
 function restart() {

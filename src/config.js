@@ -1,15 +1,12 @@
-const PLAYERS = [
-  "Tom",
-  "Thandi",
-  "Ben",
-  "Kirsten",
-  "Mike",
-  "Phoebe",
-  "Radikha",
-  "Kanishka",
-  "Juan",
-  "Sar",
-];
+const INSTRUCTIONS = [
+  "Set players by adding",
+  "?players=p1,p2,p3...",
+  "to URL.",
+  "",
+  "Refreshing the page will",
+  "reset the game and shuffle",
+  "player order."
+]
 
 const FPS = 60;
 const VIEWBOX_WIDTH = 100;
@@ -30,7 +27,7 @@ const MESSAGE_TEXT_SIZE = 5;
 const MESSAGE_INIT_TEXT = "Welcome and good luck";
 
 const TILE_WIDTH = 80;
-const TILE_HEIGHT = 130;
+const TILE_HEIGHT = 125;
 const TILE_CORNER_RADIUS = 3;
 const TILE_SEPARATION = 5;
 const TILE_SPEED = 2;
@@ -40,6 +37,7 @@ const TILE_DESC_MAX_CHAR_PER_LINE = 16;
 const TILE_DESC_TOP_Y = 43;
 const TILE_DESC_TEXT_SIZE = 7;
 const TILE_DESC_PADDING = 9;
+const TILE_NUM_Y = 93;
 
 const DIE_Y_OFFSET = 2;
 const DIE_NUMBERS = 6;

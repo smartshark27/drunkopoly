@@ -33,6 +33,7 @@ class Tile extends Component {
     this._drawTile();
     this._drawDesc();
     this._drawPlayerNames();
+    this._drawTileNumber();
   }
 
   _drawTile() {
@@ -89,6 +90,20 @@ class Tile extends Component {
         .setAttribute("font-size", TILE_PLAYER_NAME_TEXT_SIZE)
         .setAttribute("fill", this.textColor)
         .setTextContent(name)
+    );
+  }
+
+  _drawTileNumber() {
+    this.addElement(
+      SVG.new("text")
+        .setAttribute("dominant-baseline", "middle")
+        .setAttribute("text-anchor", "middle")
+        .setAttribute("x", this.x + TILE_WIDTH / 2)
+        .setAttribute("y", TILE_NUM_Y)
+        .setAttribute("style", FONTS.SNIGLET)
+        .setAttribute("font-size", TILE_PLAYER_NAME_TEXT_SIZE)
+        .setAttribute("fill", COLORS.WHITE)
+        .setTextContent(this.pos)
     );
   }
 
