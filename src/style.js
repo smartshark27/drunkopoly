@@ -2,7 +2,6 @@ const COLORS = {
   NONE: "None",
   WHITE: "White",
   BLACK: "Black",
-  LIGHT_GREY: "LightGrey",
   NAVY: "#0e2978",
   ORANGE: "#e06a26",
   RED: "#8c1007",

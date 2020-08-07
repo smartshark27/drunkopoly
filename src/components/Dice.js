@@ -22,6 +22,17 @@ class Dice extends Component {
   _drawDie(x) {
     this.addElement(
       SVG.new("rect")
+        .setAttribute("x", x + SHADOW_DISTANCE)
+        .setAttribute("y", -DIE_SIZE / 2 - DIE_Y_OFFSET + SHADOW_DISTANCE)
+        .setAttribute("rx", DIE_CORNER_RADIUS)
+        .setAttribute("ry", DIE_CORNER_RADIUS)
+        .setAttribute("width", DIE_SIZE)
+        .setAttribute("height", DIE_SIZE)
+        .setAttribute("fill", COLORS.BLACK)
+        .setAttribute("opacity", SHADOW_OPACITY)
+    );
+    this.addElement(
+      SVG.new("rect")
         .setAttribute("x", x)
         .setAttribute("y", -DIE_SIZE / 2 - DIE_Y_OFFSET)
         .setAttribute("rx", DIE_CORNER_RADIUS)

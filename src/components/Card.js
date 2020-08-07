@@ -14,6 +14,17 @@ class Card extends Component {
   _drawCard() {
     this.addElement(
       SVG.new("rect")
+        .setAttribute("x", CARD_X + SHADOW_DISTANCE)
+        .setAttribute("y", CARD_Y + SHADOW_DISTANCE)
+        .setAttribute("width", CARD_WIDTH)
+        .setAttribute("height", CARD_HEIGHT)
+        .setAttribute("rx", CARD_CORNER_RADIUS)
+        .setAttribute("ry", CARD_CORNER_RADIUS)
+        .setAttribute("fill", COLORS.BLACK)
+        .setAttribute("opacity", SHADOW_OPACITY)
+    );
+    this.addElement(
+      SVG.new("rect")
         .setAttribute("x", CARD_X)
         .setAttribute("y", CARD_Y)
         .setAttribute("width", CARD_WIDTH)
