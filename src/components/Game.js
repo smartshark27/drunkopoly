@@ -246,17 +246,29 @@ class Game extends Component {
     this._setMessage(
       `Swapping ${current.getName()} with ${otherPlayerNames.join(", ")}`
     );
+    const currentPos = current.getPosition();
     const otherPos = otherPlayers[0].getPosition();
+
     sleep(VIEW_TIME)
       .then(() => {
-        otherPlayers.forEach((player) => {
-          player.setPosition(this.pos);
-        });
+        this.pos = otherPos;
         this._redrawTiles();
       })
       .then(() => sleep(VIEW_TIME))
       .then(() => {
         current.setPosition(otherPos);
+        this._redrawTiles();
+      })
+      .then(() => sleep(VIEW_TIME))
+      .then(() => {
+        otherPlayers.forEach((player) => {
+          player.setPosition(currentPos);
+        });
+        this._redrawTiles();
+      })
+      .then(() => sleep(VIEW_TIME))
+      .then(() => {
+        this.pos = currentPos;
         this._redrawTiles();
       })
       .then(() => sleep(VIEW_TIME))
