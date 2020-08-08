@@ -14,9 +14,9 @@ class Tiles extends Component {
       var moved = 0;
       const interval = setInterval(() => {
         this.elements.forEach((tile) => {
-          tile.shift(TILE_SPEED);
+          tile.shift(MOVE_SPEED);
         });
-        moved += TILE_SPEED;
+        moved += MOVE_SPEED;
         if (moved >= TILE_WIDTH + TILE_SEPARATION) {
           console.log("Moved a space forward");
           this._removeRightMostTile();
@@ -41,9 +41,9 @@ class Tiles extends Component {
       var moved = 0;
       const interval = setInterval(() => {
         this.elements.forEach((tile) => {
-          tile.shift(-TILE_SPEED);
+          tile.shift(-MOVE_SPEED);
         });
-        moved += TILE_SPEED;
+        moved += MOVE_SPEED;
         if (moved >= TILE_WIDTH + TILE_SEPARATION) {
           console.log("Moved back a space");
           this._removeLeftMostTile();

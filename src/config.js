@@ -9,14 +9,17 @@ const INSTRUCTIONS = [
 ]
 
 const FPS = 60;
+const MOVE_SPEED = 2;
+const VIEW_TIME = 1000;
+
 const VIEWBOX_WIDTH = 100;
 const VIEWBOX_HEIGHT = 200;
-const VIEW_TIME = 1000;
-const SHADOW_DISTANCE = 10;
-const SHADOW_OPACITY = 0.3;
 
 const BACKGROUND_WIDTH = 500;
 const BACKGROUND_HEIGHT = 700;
+
+const SHADOW_DISTANCE = 3;
+const SHADOW_OPACITY = 0.3;
 
 const TITLE_Y = -75;
 const TITLE_TEXT = "DRUNKOPOLY";
@@ -30,7 +33,6 @@ const TILE_WIDTH = 80;
 const TILE_HEIGHT = 125;
 const TILE_CORNER_RADIUS = 3;
 const TILE_SEPARATION = 5;
-const TILE_SPEED = 2;
 const TILE_PLAYER_NAME_SEPARATION = 7;
 const TILE_PLAYER_NAME_TEXT_SIZE = 5;
 const TILE_DESC_MAX_CHAR_PER_LINE = 16;
@@ -59,7 +61,6 @@ const CARD_TEXT_MAX_CHAR_PER_LINE = 35;
 // Derived
 //-----------------------------------------------------------------------------
 
-// General
 const FRAME_DELAY = Math.floor(1000 / FPS);
 const VIEWBOX_LEFT = -(VIEWBOX_WIDTH / 2);
 const VIEWBOX_RIGHT = VIEWBOX_WIDTH / 2;
