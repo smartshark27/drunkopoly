@@ -150,6 +150,9 @@ class Game extends Component {
   }
 
   gameOver() {
+    this.pos = this.tiles.getPosition();
+    const player = this.players.getCurrent();
+    player.setPosition(this.pos);
     this._redrawTiles();
     sleep(VIEW_TIME)
       .then(() => {
